@@ -1,3 +1,7 @@
+#TO RUN:
+
+$ gulp
+
 # Qudini Code Test
 
 ## The Simple Queue App
