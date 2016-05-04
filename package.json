@@ -1,0 +1,34 @@
+{
+  "name": "front-end-test",
+  "version": "1.0.0",
+  "description": "## The Simple Queue App The structure of this application is based off directives acting as components handling their own data. The backend is a simple NodeJS server serving in memory JSON objects. All the dependencies are versioned for your convenience :).",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.12.2",
+    "express": "^4.12.3",
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.6.0",
+    "gulp-nodemon": "^2.0.6",
+    "gulp-run": "^1.6.7",
+    "gulp-serve": "^0.3.1",
+    "gulp-uglify": "^1.5.3",
+    "node-static": "^0.7.6",
+    "node-uuid": "^1.4.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterwateber/front-end-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peterwateber/front-end-test/issues"
+  },
+  "homepage": "https://github.com/peterwateber/front-end-test#readme"
+}

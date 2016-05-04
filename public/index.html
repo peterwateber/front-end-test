@@ -1,28 +1,59 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
     <meta charset="UTF-8">
     <title>Queue App</title>
-    <script src="/bower_components/angularjs/angular.min.js"></script>
-    <script src="/QueueApp.js"></script>
-    <script src="/customer/Customer.js"></script>
-    <script src="/add-customer/AddCustomer.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <style>
+        .Queue-customer-list>li {
+            margin-bottom: 10px;
+        }
+        .form-btns {
+            display: inline-block;
+        }
+    </style>
 </head>
+
 <body class="Queue" ng-app="qudini.QueueApp" ng-controller="QueueCtrl">
 
-    <h2>Add Customer</h2>
-    <add-customer on-added="onCustomerAdded"></add-customer>
-    <h2>Queueing Customers</h2>
-    <ul class="Queue-customer-list">
-        <li ng-repeat="customerData in customers">
-            <customer customer="customerData" on-served="onCustomerServed" on-removed="onCustomerRemoved"></customer>
-        </li>
-    </ul>
-    <h2>Served customers</h2>
-    <ul class="Queue-customer-served-list">
-        <li ng-repeat="customerData in customersServed">
-            <customer customer="customerData" on-served="onCustomerServed" on-removed="onCustomerRemoved"></customer>
-        </li>
-    </ul>
+    <div class="container">
+        <div class="header clearfix">
+            <h3 class="text-muted">Exercise</h3>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="jumbotron">
+                <div>
+                    <h2>Add Customer</h2>
+                    <add-customer on-added="onCustomerAdded"></add-customer>
+                    <h2>Queueing Customers</h2>
+                    <ul class="Queue-customer-list">
+                        <li ng-repeat="customerData in customers">
+                            <customer customer="customerData" on-served="onCustomerServed" on-removed="onCustomerRemoved"></customer>
+                        </li>
+                    </ul>
+                    <h2>Served customers</h2>
+                    <ul class="Queue-customer-served-list">
+                        <li ng-repeat="customerData in customersServed">
+                            <customer customer="customerData" served="customerData.status" on-served="onCustomerServed" on-removed="onCustomerRemoved"></customer>
+                        </li>
+                        <li ng-show="customersServed.length === 0">
+                            <p class="lead">No customers served.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <footer class="footer">
+                <p>&copy; 2016 By Peter.</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="/bower_components/angularjs/angular.min.js"></script>
+    <script>
+        window.app = angular.module('qudini.QueueApp', []);
+    </script>
+    <script src="/core.js"></script>
 </body>
+
 </html>

@@ -1,8 +1,10 @@
 <div class="AddCustomer">
-    <input type="text" placeholder="Name" ng-model="name"/>
-    <select ng-options="product.name for product in products" ng-model="product" placeholder="Product">
-        <option value="">Choose Product</option>
-    </select>
-    <button ng-click="add()">Add</button>
+    <form class="form-inline">
+        <input class="form-control" type="text" placeholder="Name" ng-model="name"/>
+        <select class="form-control" ng-model="product" placeholder="Product">
+            <option value="">Choose Product</option>
+            <option ng-repeat="product in products" value="{{product.name}}">{{product.name}}</option>
+        </select>
+        <button class="btn btn-info" ng-click="addCustomer()">Add</button>
+    </form>
 </div>
-

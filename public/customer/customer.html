@@ -1,6 +1,10 @@
 <div class="Customer">
     <span>{{ customer.name }}</span>
     <span>{{ customer.product.name }}</span>
-    <span>{{ customer.queuedTime }}</span>
-    <button ng-click="remove()">Remove</button>
+    <span ng-bind='formateDate(customer.joinedTime)'></span>
+    <input type='hidden' ng-model='id' ng-init='id=customer.id' />
+    <input type='hidden' ng-model='name' ng-init='name=customer.name' />
+    <input type='hidden' ng-model='product' ng-init='product=customer.product.name' />
+    <button type='submit' ng-if="served !== 'served'" class="btn btn-success" ng-click='serve()'>Serve</button>
+    <button ng-if="served !== 'served'" class="btn btn-danger" ng-click="remove()">Remove</button>
 </div>
