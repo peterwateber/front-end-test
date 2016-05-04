@@ -13,7 +13,6 @@ gulp.task('nodemon', function() {
         },
         ignore: [
             'node_modules/',
-            'db/',
         ],
     })
 });

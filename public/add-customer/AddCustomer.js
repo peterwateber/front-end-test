@@ -29,6 +29,8 @@ window.app.directive('addCustomer', ['$rootScope', '$http', '$timeout',
 								product: scope.product
 							}).then(function(result) {
 								$rootScope.customers = result.data;
+								scope.name = "";
+								scope.product = "";
 							});
 							$timeout.cancel(req);
 						}, 200);
