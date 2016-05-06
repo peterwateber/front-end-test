@@ -49,7 +49,7 @@ window.app.directive('customer', ['$http', '$rootScope', '$timeout',
 						scope.onServed();
 						$timeout(function(){
 							$(".timeago").timeago();
-						}, 200);
+						}, 100);
 					});
 				};
 			}
