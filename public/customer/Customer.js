@@ -4,10 +4,12 @@
  * - calculating queued time
  * - removing customer from the queue
  */
-window.app.directive('customer', ['$http', '$rootScope',
-	function($http, $rootScope) {
+window.app.directive('customer', ['$http', '$rootScope', '$timeout',
+
+	function($http, $rootScope, $timeout) {
 		return {
-			restrict: 'E',
+			restrict: '^E',
+			replace: true,
 			scope: {
 				customer: '=',
 				served: '=',
@@ -15,28 +17,18 @@ window.app.directive('customer', ['$http', '$rootScope',
 				onServed: '&'
 			},
 			templateUrl: '/customer/customer.html',
-			controller: function($scope) {
-				$scope.formateDate = function(date) {
-					var d = new Date(date);
-					var monthNames = ["January", "February", "March",
-	  								"April", "May", "June", "July",
-	  								"August", "September", "October",
-	  								"November", "December"];
-
-					return monthNames[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear() + ". " + d.getHours() + ":" + d.getMinutes();
-				};
-			},
-			link: function(scope) {
+			link: function(scope, ele) {
 
 				// calculate how long the customer has queued for
-				scope.queuedTime = new Date() - new Date(scope.customer.joinedTime);
+				var queuedTime = new Date(scope.customer.joinedTime);
+				scope.queuedTime = queuedTime.toISOString();
 
 				scope.remove = function() {
 					$http({
 						method: 'DELETE',
 						url: '/api/customer/remove',
 						params: {
-							id: scope.customer.id
+							id: scope.id
 						}
 					}).then(function(res) {
 						scope.onRemoved();
@@ -54,8 +46,10 @@ window.app.directive('customer', ['$http', '$rootScope',
 					$http.post('/api/customer/serve', {
 						id: scope.id
 					}).then(function(res) {
-						$rootScope.customers = res.data.customers;
-						$rootScope.customersServed = res.data.servedCustomers;
+						scope.onServed();
+						$timeout(function(){
+							$(".timeago").timeago();
+						}, 200);
 					});
 				};
 			}

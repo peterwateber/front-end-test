@@ -40,6 +40,7 @@ function serveCustomer(id) {
 	customers.forEach(function(customer, index) {
 		if (customer.id == id) {
 			customer.status = 'served';
+            customer.joinedTime = new Date().toString();
             customers.splice(index, 1);
             servedCustomers.push(customer);
 		}
@@ -57,10 +58,9 @@ function addCustomer(customer) {
 }
 
 function removeCustomer(targetCustomerId) {
-
 	customers = customers.filter(function(customer) {
-		return customer.id != targetCustomerId;
-	})
+		return customer.id !== targetCustomerId;
+	});
 }
 
 
@@ -91,7 +91,8 @@ app.post('/api/customer/serve', function(req, res) {
 });
 app.delete('/api/customer/remove', function(req, res) {
 	removeCustomer(req.query.id);
-	res.end('Customer was removed!');
+	res.type('json');
+    res.send(customers);
 });
 
 app.use(function(req, res) {

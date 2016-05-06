@@ -3,6 +3,7 @@ window.app.directive('addCustomer', ['$rootScope', '$http', '$timeout',
 	function($rootScope, $http, $timeout) {
 		return {
 			restrict: 'E',
+			replace: true,
 			scope: {
 				onAdded: '&'
 			},
@@ -35,12 +36,12 @@ window.app.directive('addCustomer', ['$rootScope', '$http', '$timeout',
 							$timeout.cancel(req);
 						}, 200);
 					} else {
-						if (!scope.product) {
-							alert('Please select a product!');
-						}
 						if (!scope.name) {
-							alert('Please enter the customer\'s name');
+							$rootScope.errorMessage = 'Please enter the customer\'s name';
+						} else if (!scope.product) {
+							$rootScope.errorMessage = 'Please select a product';
 						}
+						$("#modal").modal();
 					}
 				};
 			}

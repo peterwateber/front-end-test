@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
+    gutil = require('gulp-util'),
     nodemon = require('gulp-nodemon');
 
 
@@ -19,7 +20,7 @@ gulp.task('nodemon', function() {
 
 gulp.task('js-main', function() {
     return gulp.src(['public/QueueApp.js', 'public/add-customer/**.js', 'public/customer/**.js'])
-        .pipe(uglify({mangle: false}))
+        .pipe(uglify({mangle: false})).on('error', gutil.log)
         .pipe(concat('core.js'))
         .pipe(gulp.dest('public/'));
 });

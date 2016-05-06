@@ -1,0 +1,87 @@
+body {
+    background: #F9F8F8;
+    padding-top: 40px;
+}
+.wrapper {
+    background: #fff;
+    padding: 0 10px 20px 10px;
+    border-radius: 6px;
+    display: inline-block;
+}
+.head {
+    padding: 5px 0;
+}
+.Queue-customer-list>li {
+    margin-bottom: 10px;
+}
+.form-btns {
+    display: inline-block;
+}
+.header-label {
+    font-weight: bold;
+}
+.header-title {
+    text-align: left;
+    margin-left: 40%;
+}
+.blue-txt {
+    color: #4379F3;
+}
+.red-icon {
+    color: #E82525;
+}
+.break-point {
+    margin: 15px 0 10px 0;
+}
+.timeago {
+    font-size: 9px;
+    font-style: italic;
+}
+/** BUTTON STYLE */
+.btn-inverse {
+    background: #111;
+    padding: 2px 5px;
+    font-size: 11px;
+}
+.btn.btn-inverse:hover,
+.btn.btn-inverse:focus,
+.btn.btn-inverse:active {
+    color: #fff;
+    box-shadow: none;
+    outline: none;
+}
+/** CUSTOMER */
+.AddCustomer form .form-control {
+    padding: 4px 8px;
+    font-size: 13px;
+    height: 30px;
+}
+.customers-area {
+    text-align: center;
+}
+.customers-area ul,
+.customers-area ul>li {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 5px;
+    text-align: left;
+}
+.customers-area ul>li:before {
+    content: "";
+    border-color: transparent #4379F3;
+    border-style: solid;
+    border-width: 6px 7px 6px 0;
+    display: block;
+    height: 0;
+    width: 0;
+    left: -6px;
+    top: 20px;
+    position: relative;
+}
+.customer {
+    border-radius: 4px;
+    background: #4379F3;
+    color: #fff;
+    padding: 3px 10px;
+    display: inline-block;
+}

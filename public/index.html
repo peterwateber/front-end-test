@@ -5,53 +5,75 @@
     <meta charset="UTF-8">
     <title>Queue App</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <style>
-        .Queue-customer-list>li {
-            margin-bottom: 10px;
-        }
-        .form-btns {
-            display: inline-block;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body class="Queue" ng-app="qudini.QueueApp" ng-controller="QueueCtrl">
 
     <div class="container">
-        <div class="header clearfix">
-            <h3 class="text-muted">Exercise</h3>
-        </div>
-        <div class="col-md-8 col-md-offset-2">
-            <div class="jumbotron">
-                <div>
-                    <h2>Add Customer</h2>
-                    <add-customer on-added="onCustomerAdded"></add-customer>
-                    <h2>Queueing Customers</h2>
-                    <ul class="Queue-customer-list">
-                        <li ng-repeat="customerData in customers">
-                            <customer customer="customerData" on-served="onCustomerServed" on-removed="onCustomerRemoved"></customer>
-                        </li>
-                    </ul>
-                    <h2>Served customers</h2>
-                    <ul class="Queue-customer-served-list">
-                        <li ng-repeat="customerData in customersServed">
-                            <customer customer="customerData" served="customerData.status" on-served="onCustomerServed" on-removed="onCustomerRemoved"></customer>
-                        </li>
-                        <li ng-show="customersServed.length === 0">
-                            <p class="lead">No customers served.</p>
-                        </li>
-                    </ul>
+        <div class="col-md-12 customers-area">
+            <div class="wrapper">
+                <div class="head text-center">
+                    <div class="pull-left">
+                        <span class="glyphicon glyphicon-signal"></span>
+                    </div>
+                    <strong>Peter</strong>
                 </div>
+                <add-customer on-added="onCustomerAdded"></add-customer>
+                <div class="header-label">
+                    <div class="pull-left blue-txt">&gt;Customers</div>
+                    <div class="header-title">Queue <span class="glyphicon glyphicon-bullhorn red-icon"></span></div>
+                </div>
+                <ul class="Queue-customer-list">
+                    <li ng-repeat="customerData in customers">
+                        <customer customer="customerData" on-served="onCustomerServed()" on-removed="onCustomerRemoved()"></customer>
+                    </li>
+                    <li ng-show="customers.length === 0">
+                        <div class="customer">No customers.</div>
+                    </li>
+                </ul>
+                <hr class="break-point" />
+                <div class="header-label">
+                    <div class="pull-left blue-txt">&gt;Customers</div>
+                    <div class="header-title">Served <span class="glyphicon glyphicon-bullhorn red-icon"></span></div>
+                </div>
+                <ul class="Queue-customer-served-list">
+                    <li ng-repeat="customerData in customersServed">
+                        <customer customer="customerData" served="customerData.status" on-served="onCustomerServed" on-removed="onCustomerRemoved"></customer>
+                    </li>
+                    <li ng-show="customersServed.length === 0">
+                        <div class="customer">No customers served.</div>
+                    </li>
+                </ul>
             </div>
-            <footer class="footer">
-                <p>&copy; 2016 By Peter.</p>
-            </footer>
         </div>
     </div>
-
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Oops!</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{errorMessage}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="/bower_components/angularjs/angular.min.js"></script>
+    <script src='/plugin/timeago.js'></script>
     <script>
         window.app = angular.module('qudini.QueueApp', []);
+        setTimeout(function() {
+            $(".timeago").timeago();
+        }, 1000);
     </script>
     <script src="/core.js"></script>
 </body>

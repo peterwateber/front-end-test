@@ -1,10 +1,14 @@
-<div class="Customer">
+<div class="customer">
     <span>{{ customer.name }}</span>
     <span>{{ customer.product.name }}</span>
-    <span ng-bind='formateDate(customer.joinedTime)'></span>
+    <time class="timeago" datetime="{{queuedTime}}" title="{{queuedTime}}">{{queuedTime}}</time>
     <input type='hidden' ng-model='id' ng-init='id=customer.id' />
     <input type='hidden' ng-model='name' ng-init='name=customer.name' />
     <input type='hidden' ng-model='product' ng-init='product=customer.product.name' />
-    <button type='submit' ng-if="served !== 'served'" class="btn btn-success" ng-click='serve()'>Serve</button>
-    <button ng-if="served !== 'served'" class="btn btn-danger" ng-click="remove()">Remove</button>
+    <button type='submit' ng-if="served !== 'served'" class="btn btn-inverse" ng-click='serve()' title="Serve">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+    </button>
+    <button ng-if="served !== 'served'" class="btn btn-inverse" ng-click="remove()" title="Remove">
+        <span class="glyphicon glyphicon-remove-circle"></span>
+    </button>
 </div>

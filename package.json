@@ -12,6 +12,7 @@
     "gulp-run": "^1.6.7",
     "gulp-serve": "^0.3.1",
     "gulp-uglify": "^1.5.3",
+    "gulp-util": "^3.0.7",
     "node-static": "^0.7.6",
     "node-uuid": "^1.4.3"
   },
